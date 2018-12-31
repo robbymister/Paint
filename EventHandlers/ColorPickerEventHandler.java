@@ -1,5 +1,3 @@
-package ca.utoronto.utm.paint;
-
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
@@ -13,8 +11,6 @@ import javafx.event.ActionEvent;
  * Class that implements the EventHandler for the ColorPicker button on the ShapeChooserPanel.
  * This class opens up a new window where the user can select the colour of the outline they want
  * from a ColourPanel.
- * 
- * @author evansro3
  *
  */
 public class ColorPickerEventHandler implements EventHandler<ActionEvent>{
