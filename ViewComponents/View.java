@@ -1,5 +1,3 @@
-package ca.utoronto.utm.paint;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -68,8 +66,7 @@ public class View implements EventHandler<ActionEvent> {
 	/**
 	 * 
 	 * @return the PaintModel
-	 * 
-	 * @author ilaganr1
+	 *
 	 */
 	public PaintModel getPaintModel() {
 		return model;
