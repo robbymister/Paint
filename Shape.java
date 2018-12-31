@@ -1,12 +1,7 @@
-package ca.utoronto.utm.paint;
-
 import javafx.scene.paint.Color;
 
 /**
- * 
  * A unifying class for all shapes that will be on the canvas.
- * 
- * @author ilaganr1
  *
  */
 public abstract class Shape {
