@@ -1,12 +1,8 @@
-
-package ca.utoronto.utm.paint;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
  * The Rectangle class is a Shape object that has a specific thickness, color and fill color.
- * @author burnser2
  *
  */
 public class Rectangle extends Shape implements DrawCommand{
