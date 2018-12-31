@@ -1,7 +1,3 @@
-package ca.utoronto.utm.paint;
-
-
-
 import javafx.event.ActionEvent;
 import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
