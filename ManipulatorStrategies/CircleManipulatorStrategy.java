@@ -6,8 +6,6 @@ import javafx.scene.paint.Color;
  * Strategy class for Circle objects.
  * This allows the client to draw circles on the canvas.
  * 
- * @author ilaganr1
- *
  */
 public class CircleManipulatorStrategy extends ShapeManipulatorStrategy {
 	private Circle circle;
