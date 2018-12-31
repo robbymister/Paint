@@ -1,11 +1,8 @@
-package ca.utoronto.utm.paint;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 /**
  * Creates a polyline with a given colour and thickness that extends from the Squiggle class
- * @author burnser2, meiange1
  *
  */
 public class Polyline extends Squiggle implements DrawCommand {
