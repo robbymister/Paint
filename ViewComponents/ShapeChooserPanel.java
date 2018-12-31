@@ -89,7 +89,7 @@ public class ShapeChooserPanel extends GridPane implements EventHandler<ActionEv
 		/**
 		 * Whenever the slider is moved, listeners get notified and changes the value of the thickness
 		 * chosen
-		 * @author meiange1
+		 * 
 		 */
 		slider.valueProperty().addListener(new ChangeListener<Number>() {
 			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) { 
