@@ -1,13 +1,9 @@
-package ca.utoronto.utm.paint;
-
 import java.util.ArrayList;
 
 /**
  * This factory is responsible for creating specific ShapeManipulatorStrategy classes
  * depending on the button that was pressed on the panel.
  * Implements the Factory design pattern.
- * 
- * @author ilaganr1
  *
  */
 public class ShapeFactory {
