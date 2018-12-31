@@ -1,5 +1,3 @@
-package ca.utoronto.utm.paint;
-
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -8,7 +6,6 @@ import javafx.scene.paint.Color;
 
 /**
  * The model object that contains the DrawCommands and executes them.
- * @author ilaganr1
  *
  */
 public class PaintModel extends Observable {
