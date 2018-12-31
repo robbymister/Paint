@@ -1,11 +1,8 @@
-package ca.utoronto.utm.paint;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
  * Creates the instance of the Paint program
- * @author everyone
  *
  */
 public class Paint extends Application {
