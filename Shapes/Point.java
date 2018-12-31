@@ -1,5 +1,3 @@
-package ca.utoronto.utm.paint;
-
 /**
  * Class that is a point at a certain x and y
  *
