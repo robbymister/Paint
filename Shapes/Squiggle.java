@@ -1,4 +1,3 @@
-package ca.utoronto.utm.paint;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -6,7 +5,6 @@ import javafx.scene.paint.Color;
 /**
  * Creates a squiggle that is composed of squares that follow the mouse cursor with a given colour and 
  * thickness
- * @author burnser2, meiange1
  *
  */
 public class Squiggle extends Shape implements DrawCommand{
