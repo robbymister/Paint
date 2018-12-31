@@ -1,5 +1,3 @@
-package ca.utoronto.utm.paint;
-
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -76,9 +74,8 @@ class PaintPanel extends StackPane implements Observer, EventHandler<MouseEvent>
 	}
 	
 	/**
-	 * 
 	 * @return the last strategy that was clicked from the panel.
-	 * @author ilaganr1
+	 * 
 	 */
 	public ShapeManipulatorStrategy getStrategy() {
 		int latestStrategy = strategies.size() - 1;
