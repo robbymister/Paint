@@ -5,8 +5,6 @@ import javafx.scene.paint.Color;
  * PolylineManipulatorStrategy is a subclass of ShapeManipulatorStrategy and allows
  * it to make Polyline objects on the canvas.
  * 
- * @author ilaganr1
- *
  */
 public class PolylineManipulatorStrategy extends ShapeManipulatorStrategy {
 	private Polyline polyline;
