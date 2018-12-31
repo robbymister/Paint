@@ -1,5 +1,3 @@
-package ca.utoronto.utm.paint;
-
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
@@ -14,8 +12,6 @@ import javafx.scene.control.ToggleButton;
  * Class that implements the EventHandler for the FillPicker button on the ShapeChooserPanel.
  * This class opens up a new window where the user can select the colour of the fill they want
  * from a ColourPanel.
- * 
- * @author evansro3
  *
  */
 public class FillEventHandler implements EventHandler<ActionEvent>{
