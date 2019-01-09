@@ -1,35 +1,48 @@
+package ca.utoronto.utm.paint;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-/**
- * Creates a class that unifies all the components of the Paint program so that each part can be accessed
- * using this class.
- * 
- */
 public class View implements EventHandler<ActionEvent> {
 
-	private PaintModel model;
-
+	private PaintModel paintModel;
 	private PaintPanel paintPanel;
 	private ShapeChooserPanel shapeChooserPanel;
+	private Stage stage;
 
 	public View(PaintModel model, Stage stage) {
-
-		this.model = model;
+		this.stage = stage;
+		this.paintModel = model;
 		initUI(stage);
 	}
 
+	public PaintModel getPaintModel() {
+		return this.paintModel;
+	}
+
+	public void setPaintModel(PaintModel paintModel) {
+		this.paintModel=paintModel;
+		this.paintPanel.setPaintModel(paintModel);
+	}
 	private void initUI(Stage stage) {
 
-		this.paintPanel = new PaintPanel(this.model, this);
+		this.paintPanel = new PaintPanel(this.paintModel);
 		this.shapeChooserPanel = new ShapeChooserPanel(this);
 
 		BorderPane root = new BorderPane();
@@ -37,40 +50,20 @@ public class View implements EventHandler<ActionEvent> {
 		root.setCenter(this.paintPanel);
 		root.setLeft(this.shapeChooserPanel);
 
-		/**
-		 * A scene is created here of the specified size and the lines are smoothed here using
-		 * the AntiAliasing feature
-		 */
-		Scene scene = new Scene(root, 750, 530, true, SceneAntialiasing.BALANCED);
+		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setTitle("Paint");
 		stage.show();
 	}
 
-	/**
-	 * Getter for the PaintPanel to be accessed
-	 * @return the PaintPanel of the current instance
-	 */
 	public PaintPanel getPaintPanel() {
 		return paintPanel;
 	}
 
-	/**
-	 * Getter for the ShapeChooserPanel to be accessed
-	 * @return the ShapeChooserPanel of the current instance
-	 */
 	public ShapeChooserPanel getShapeChooserPanel() {
 		return shapeChooserPanel;
 	}
-	
-	/**
-	 * 
-	 * @return the PaintModel
-	 *
-	 */
-	public PaintModel getPaintModel() {
-		return model;
-	}
+
 	private MenuBar createMenuBar() {
 
 		MenuBar menuBar = new MenuBar();
@@ -132,8 +125,66 @@ public class View implements EventHandler<ActionEvent> {
 		return menuBar;
 	}
 
+	public void setPaintPanelShapeManipulatorStrategy(ShapeManipulatorStrategy strategy) {
+		this.paintPanel.setShapeManipulatorStrategy(strategy);
+	}
+
 	@Override
 	public void handle(ActionEvent event) {
-		System.out.println(((MenuItem)event.getSource()).getText());
+		System.out.println(((MenuItem) event.getSource()).getText());
+		String command = ((MenuItem) event.getSource()).getText();
+		if (command.equals("Open")) {
+			FileChooser fc = new FileChooser();
+			File file = fc.showOpenDialog(this.stage);
+
+			if (file != null) {
+				System.out.println("Opening: " + file.getName() + "." + "\n");
+				BufferedReader bufferedReader;
+				try {
+					bufferedReader = new BufferedReader(new FileReader(file));
+					PaintModel paintModel = new PaintModel();
+					PaintFileParser parser = new PaintFileParser();
+					parser.parse(bufferedReader,  paintModel);
+					this.setPaintModel(paintModel);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("Open command cancelled by user." + "\n");
+			}
+		} else if (command.equals("Save")) {
+			FileChooser fc = new FileChooser();
+			File file = fc.showSaveDialog(this.stage);
+
+			if (file != null) {
+				// This is where a real application would open the file.
+				System.out.println("Saving: " + file.getName() + "." + "\n");
+				PrintWriter writer;
+				try {
+					writer = new PrintWriter(file);
+					View.save(writer, this.paintModel);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("Save command cancelled by user." + "\n");
+			}
+		} else if (command.equals("New")) {
+			this.paintModel.reset();
+		}	
+	}
+	
+	/**
+	 * Function that saves the current canvas in a .txt file so that it can be read and loaded
+	 * @param writer this writes down all the information into a given file
+	 */
+	public static void save(PrintWriter writer, PaintModel paintModel) {
+		writer.println("Paint Save File Version 1.0");
+		ArrayList<PaintCommand> coms=paintModel.getAllCommands();
+		for(PaintCommand c: coms) {
+			writer.println(c.saveString());
+		}
+		writer.println("End Paint Save File");
+		writer.close();
 	}
 }
