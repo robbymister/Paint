@@ -1,5 +1,3 @@
-package ca.utoronto.utm.paint;
-
 /**
  * Interface that allows an object to be visited by a visitor
  *
